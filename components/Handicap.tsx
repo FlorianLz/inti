@@ -18,7 +18,7 @@ const Handicap = () => {
         Auditif: false
     });
 
-    const handleCheckboxChange = (checkbox) => {
+    const handleCheckboxChange = (checkbox: keyof typeof checkboxes) => {
         if (checkbox === 'Aucun' && !checkboxes.Aucun) {
             // Si la case "Aucun" est cochée, décocher les autres cases
             setCheckboxes({
