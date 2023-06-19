@@ -2,8 +2,8 @@ import {createClient} from '@supabase/supabase-js'
 import * as process from "process";
 
 export const supabase = createClient(
-    'https://scksfmmylkkaqkckvvek.supabase.co/',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNja3NmbW15bGtrYXFrY2t2dmVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODY2ODI3MDAsImV4cCI6MjAwMjI1ODcwMH0.-kN0uNm1Z4TAInLG6-9tBGjjseF7-SA5OzvWYviIIKo',
+    ''+process.env.NEXT_PUBLIC_SUPABASE_URL,
+    ''+process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     {
         auth: {
             persistSession: false,
