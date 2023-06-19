@@ -8,7 +8,7 @@ import cardiaque from '../public/handicap_cardiac.svg';
 import visuel from '../public/handicap_view.svg';
 import auditif from '../public/handicap_audio.svg';
 
-const handicapImages = [
+const handicapTab = [
     { name: 'Aucun', image: close, value: false },
     { name: 'Cognitif', image: cognitif, value: false },
     { name: 'Moteur', image: moteur, value: false },
@@ -18,7 +18,7 @@ const handicapImages = [
 ];
 
 const Handicap = () => {
-    const [selectedHandicaps, setSelectedHandicaps] = useState(handicapImages);
+    const [selectedHandicaps, setSelectedHandicaps] = useState(handicapTab);
 
     const handleCheckboxChange = (index: number) => {
         setSelectedHandicaps((prevHandicaps) => {
