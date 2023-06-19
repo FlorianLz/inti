@@ -36,3 +36,9 @@ body {
         }
     }
 }
+
+span.flatpickr-day,
+span.flatpickr-day.prevMonthDay,
+span.flatpickr-day.nextMonthDay {
+  border:none !important;
+}
