@@ -146,7 +146,7 @@ return (
                     </div>
                 </div>
             </div>
-            <button onClick={props.next} className='button-primary w-full'>Passer au budget</button>
+            <button onClick={props.next} className='button-primary w-full hover:bg-primary-700'>Passer au budget</button>
         </div>
     </div>
 )

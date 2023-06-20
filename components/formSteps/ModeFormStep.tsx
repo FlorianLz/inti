@@ -38,7 +38,7 @@ export const ModeFormStep = (props: any) => {
                         value: 'on-choisis-ensemble'
                     }
                 ]} onChange={(value) => handleChange(value)}/>
-                <button onClick={props.next} className='button-primary w-full'>Passer aux personnes</button>
+                <button onClick={props.next} className='button-primary w-full hover:bg-primary-700'>Passer aux personnes</button>
             </div>
         </div>
     )

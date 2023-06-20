@@ -24,7 +24,7 @@ export const DateFormStep = (props: any) => {
             </div>
             <div className='flex-grow flex flex-col justify-between'>
                 <DatePicker onChange={(value) => setFieldValue(value)}/>
-                <button onClick={props.next} className='button-primary w-full'>Passer à la destination</button>
+                <button onClick={props.next} className='button-primary w-full hover:bg-primary-700'>Passer à la destination</button>
             </div>
         </div>
     )
