@@ -46,9 +46,9 @@ const Handicap = () => {
     };
 
     return (
-        <div className="max-w-sm my-0 mx-auto px-5">
+        <div>
             <Image src={picHandi} alt="Picture of the author" width={358} height={352} />
-            <div className="flex gap-2 flex-wrap mt-6">
+            <div className="flex gap-2 flex-wrap mt-6 justify-center">
                 {selectedHandicaps.map((handicap, index) => (
                     <label
                         key={handicap.name}
