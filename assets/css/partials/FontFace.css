@@ -18,4 +18,12 @@
     @apply text-[20px] font-bold;
   }
 
+  .text-caption {
+    @apply text-[14px];
+  }
+
+  .number-result{
+    @apply text-[64px] font-bold leading-[62px] block -mb-[0.90rem] pl-4;
+  }
+
 }
