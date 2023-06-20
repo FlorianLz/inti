@@ -6,4 +6,5 @@ export interface ISearchPlace {
     country: string
     coordinates: [number, number];
     distanceFromParis: string;
+    fromWorldChoice: boolean;
 }
