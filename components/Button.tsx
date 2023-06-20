@@ -5,6 +5,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = ({buttons, onChange}) =>
     const [value, setValue] = useState('');
 
     useEffect(() => {
+        if (!value) return;
         if (onChange) onChange(value);
     }, [onChange, value]);
 
@@ -14,9 +15,9 @@ const ButtonComponent: React.FC<ButtonComponentProps> = ({buttons, onChange}) =>
     }
 
     return (
-        <div className="flex gap-8 flex-col justify-center">
+        <div className="flex gap-8 mb-8 flex-col justify-center">
             {buttons.map((button, index) => (
-                <button className="w-[358px] h-[208px]  mx-auto my-0 text-black bg-neutral-500"
+                <button className="w-full h-[208px] button-neutral"
                         key={index}
                         onClick={(e) => handleClick(e, button.value)}>
                     {button.text}

@@ -17,11 +17,15 @@ export const DateFormStep = (props: any) => {
     }, [fieldValue])
 
     return (
-        <div>
-            <Back/>
-            <h1>Quand veux tu voyager ?</h1>
-            <DatePicker onChange={(value) => setFieldValue(value)}/>
-            <button onClick={props.next}>Suivant</button>
+        <div className="h-full flex flex-col justify-between">
+            <div>
+                <Back/>
+                <h1 className='title-l mb-6'>Quand veux-tu voyager ?</h1>
+            </div>
+            <div className='flex-grow flex flex-col justify-between'>
+                <DatePicker onChange={(value) => setFieldValue(value)}/>
+                <button onClick={props.next} className='button-primary w-full'>Passer à la destination</button>
+            </div>
         </div>
     )
 }

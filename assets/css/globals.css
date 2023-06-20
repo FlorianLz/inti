@@ -1,0 +1,21 @@
+@import "partials/FontFace.css";
+@import "partials/Flatpickr.css";
+@import "partials/Swiper.css";
+@import "partials/Buttons.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    @variants responsive {
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+    }
+}

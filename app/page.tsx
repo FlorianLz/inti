@@ -5,8 +5,8 @@ import {MultiStepForm} from "@/components/MultiStepsForm";
 
 export default function Home() {
   return (
-      <main>
-          <MultiStepForm/>
-      </main>
+      <div className="h-screen py-4">
+        <MultiStepForm/>
+      </div>
   )
 }
