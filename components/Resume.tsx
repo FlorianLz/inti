@@ -1,4 +1,6 @@
 import React from 'react';
+import {Back} from "@/components/Back";
+import Swiper from "@/components/Swiper";
 
 export const jsonData: any = {
     nbPerson: {
@@ -63,18 +65,20 @@ const Resume = () => {
     } = jsonData;
 
     return (
-        <div>
-            <h2 className="text-black">Résumé de la recherche</h2>
-            <h3 className="text-black">Nombre de personnes</h3>
-            <ul>
-                {jsonData.mail.map((email: any, index: any) => (
-                    <li className="text-black" key={index}>{email}</li>
-                ))}
-            </ul>
-            <h3 className="text-black">Date</h3>
-            <p className="text-black">Date de début: {date.startDate}</p>
-            <p className="text-black">Date de fin: {date.endDate}</p>
-            <p className="text-black">Nombre de jours: {date.nbDays}</p>
+        <div className="h-full flex flex-col justify-between">
+            <div>
+                <Back/>
+                <h1 className='title-l mb-6'>En résumé tu as un groupe</h1>
+            </div>
+            <div className='flex-grow flex flex-col justify-between'>
+                <h3 className="text-neutral-100 font-bold text-xl mb-2">De x personnes</h3>
+                <div className="mb-6">
+                    <p className="text-neutral-100 border border-neutral-50 rounded-3xl w-max p-3">Nathalie</p>
+                </div>
+                <h3 className="text-neutral-100 font-bold text-xl mb-2">Qui part suur la periode</h3>
+                <h3 className="text-neutral-100 font-bold text-xl mb-2">Vers la destination</h3>
+                <h3 className="text-neutral-100 font-bold text-xl mb-2">Pour un budget</h3>
+            </div>
         </div>
     );
 };
