@@ -1,5 +1,6 @@
-import {IFormState, IFormStep} from "@/interfaces/form.interface";
-import {IDateInput, IDestination, ISearchInput} from "@/interfaces/SearchInput.interface";
+import {IFormState, IFormStep} from "@/interfaces/Form.interface";
+import {IDateInput, IDestination, ISearchInput, ITransport} from "@/interfaces/SearchInput.interface";
+import {ISwiperResultItem} from "@/interfaces/Questions.interface";
 
 export const searchInputService = {
     buildFromForm: (formState: IFormState): ISearchInput => {
@@ -9,14 +10,7 @@ export const searchInputService = {
                 children: 0,
                 babies: 0,
             },
-            transport: {
-                train: false,
-                car: true,
-                plane: true,
-                bus: false,
-                boat: false,
-                other: false,
-            },
+            transport: searchInputService.getFormTransports(formState),
             budget: {
                 min: 0,
                 max: 10000,
@@ -83,7 +77,7 @@ export const searchInputService = {
         if (dateStep && dateField) {
             const startDate = dateField.value[0]
             const endDate = dateField.value[1];
-            const nbDays = (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24);
+            const nbDays = (new Date(endDate).getTime() - new Date(startDate).getTime()) / (1000 * 3600 * 24);
             return {
                 startDate: startDate,
                 endDate: endDate,
@@ -97,6 +91,35 @@ export const searchInputService = {
             endDate: '2023-07-27',
             nbDays: 8,
             isFlexible: false,
+        }
+    },
+
+    findTransportValueByName: (transportsFields: ISwiperResultItem[], name: string) => {
+        return transportsFields.find((field) => field.name === name);
+    },
+    getFormTransports: (formState: IFormState): ITransport => {
+        const transportStep = searchInputService.findFormStepByName(formState, 'transports');
+        const transportField = transportStep ? searchInputService.findStepFieldByName(transportStep, 'transports') : null;
+        const transportValues = transportField ? transportField.value : null;
+
+        if (transportStep && transportField && transportValues) {
+            return {
+                train: searchInputService.findTransportValueByName(transportValues, 'train')?.choice ?? true,
+                car: searchInputService.findTransportValueByName(transportValues, 'car')?.choice ?? true,
+                plane: searchInputService.findTransportValueByName(transportValues, 'plane')?.choice ?? true,
+                bus: searchInputService.findTransportValueByName(transportValues, 'bus')?.choice ?? true,
+                boat: searchInputService.findTransportValueByName(transportValues, 'boat')?.choice ?? true,
+                other: searchInputService.findTransportValueByName(transportValues, 'other')?.choice ?? true,
+            }
+        }
+
+        return {
+            train: false,
+            car: true,
+            plane: true,
+            bus: false,
+            boat: false,
+            other: false,
         }
     }
 }

@@ -52,8 +52,8 @@ const Handicap = () => {
                 {selectedHandicaps.map((handicap, index) => (
                     <label
                         key={handicap.name}
-                        className={`flex items-center w-[109px] h-[72px] text-neutral050 justify-center flex-col border border-neutral050 rounded-lg ${
-                            handicap.value ? 'bg-neutral050 text-white' : ''
+                        className={`flex items-center w-[109px] h-[72px] text-neutral-50 justify-center flex-col border border-neutral050 rounded-lg ${
+                            handicap.value ? 'bg-neutral-50 text-white' : ''
                         }`}
                     >
                         <input

@@ -16,21 +16,30 @@ export const ModeFormStep = (props: any) => {
         ]
     }, [fieldValue])
 
+    const handleChange = (value: string) => {
+        setFieldValue(value)
+        props.next();
+    }
+
     return (
-        <div>
-            <Back/>
-            <h1>Qui choisis ?</h1>
-            <ButtonComponent  buttons={[
-                { 
-                    text: 'Je choisis',
-                    value: 'je-choisis'
-                },
-                {
-                    text: 'On choisis ensemble',
-                    value: 'on-choisis-ensemble'
-                }
-            ]} onChange={(value) => setFieldValue(value)}/>
-            <button onClick={props.next}>Passer au nombre de personnes</button>
+        <div className="h-full flex flex-col justify-between">
+            <div>
+                <Back/>
+                <h1 className='title-l mb-6'>Qui choisis ?</h1>
+            </div>
+            <div className='h-full flex flex-col justify-between'>
+                <ButtonComponent  buttons={[
+                    {
+                        text: 'Je choisis',
+                        value: 'je-choisis'
+                    },
+                    {
+                        text: 'On choisis ensemble',
+                        value: 'on-choisis-ensemble'
+                    }
+                ]} onChange={(value) => handleChange(value)}/>
+                <button onClick={props.next} className='button-primary w-full'>Passer aux personnes</button>
+            </div>
         </div>
     )
 }

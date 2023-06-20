@@ -1,0 +1,9 @@
+@layer components {
+    .button-primary {
+        @apply bg-primary-600 px-7 py-6 rounded-2xl text-primary-100 text-base font-bold;
+    }
+
+    .button-neutral {
+        @apply bg-neutral-100 px-7 py-6 rounded-2xl text-white text-base font-bold;
+    }
+}

@@ -1,12 +1,13 @@
 'use client';
 
 import React, {createContext, useCallback, useEffect, useState} from "react";
-import {IFormState} from "@/interfaces/form.interface";
+import {IFormState} from "@/interfaces/Form.interface";
 import {ModeFormStep} from "@/components/formSteps/ModeFormStep";
 import {DestinationFormStep} from "@/components/formSteps/DestinationFormStep";
 import {DateFormStep} from "@/components/formSteps/DateFormStep";
 import {ISearchInput} from "@/interfaces/SearchInput.interface";
 import {searchInputService} from "@/service/searchInput.service";
+import {TransportsFormStep} from "@/components/formSteps/TransportsFormStep";
 
 const DEFAULT_FORM_STATE: IFormState = {
     index: 0,
@@ -22,19 +23,19 @@ const DEFAULT_FORM_STATE: IFormState = {
             component: ExampleStepComponent,
         },*/
         {
+            name: 'date',
+            fields: [],
+            component: DateFormStep,
+        },
+        {
             name: 'destination',
             fields: [],
             component: DestinationFormStep,
         },
-        /*{
-            name: 'transport',
-            fields: [],
-            component: ExampleStepComponent,
-        },*/
         {
-            name: 'date',
+            name: 'transports',
             fields: [],
-            component: DateFormStep,
+            component: TransportsFormStep,
         },
         /*{
             name: 'budget',
@@ -61,8 +62,8 @@ export const MultiStepForm = () => {
 
     useEffect(() => {
         console.log('Build searchInput');
+        console.log(formState);
         const searchInput = searchInputService.buildFromForm(formState);
-
         const lastStepIndex = formState.steps.length;
         if (formState.index !== lastStepIndex) return;
         submit();
@@ -99,7 +100,7 @@ export const MultiStepForm = () => {
 
     return (
         <FormStateContext.Provider value={formState}>
-            <form>
+            <form className='h-full'>
                 {formState.steps[formState.index].component({stepIndex: formState.index, next, prev, submit})}
             </form>
         </FormStateContext.Provider>

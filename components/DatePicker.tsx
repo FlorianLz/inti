@@ -26,7 +26,8 @@ const DatePicker: React.FC<DatePickerProps> = ({onChange}) => {
         onChange(formattedDates);
     };
 
-    const handleReset = () => {
+    const handleReset = (e: React.MouseEvent) => {
+        e.preventDefault();
         onChange(null);
         if (inputRef.current) {
             inputRef.current.flatpickr.clear();
@@ -42,7 +43,7 @@ const DatePicker: React.FC<DatePickerProps> = ({onChange}) => {
     }
 
     return (
-        <div>
+        <div className="flex flex-col items-center justify-start">
                 <Flatpickr
                 options={{
                     dateFormat: 'd/m/Y',
@@ -58,7 +59,7 @@ const DatePicker: React.FC<DatePickerProps> = ({onChange}) => {
                 ref={inputRef}
                 className="hidden"
             />
-            <button className="flex justify-center w-full mt-8 underline text-neutral100"
+            <button className="flex justify-center w-full mt-8 underline text-neutral-100"
                     onClick={handleReset}>Réinitialiser
             </button>
         </div>
