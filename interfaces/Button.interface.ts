@@ -1,4 +1,9 @@
 export interface ButtonComponentProps {
-    buttonText1: string;
-    buttonText2: string;
+    buttons: ButtonComponentItemProps[]
+    onChange?: (value: string) => void;
+}
+
+export interface ButtonComponentItemProps {
+    text: string;
+    value: string;
 }

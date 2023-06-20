@@ -43,7 +43,6 @@ const Handicap = () => {
             name: handicap.name,
             value: handicap.value,
         }));
-        console.log(selectedValues);
     };
 
     return (

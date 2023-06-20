@@ -1,6 +1,5 @@
 export interface IFormState {
     index: number;
-    selected_index: number;
     steps: Array<IFormStep>;
 }
 
