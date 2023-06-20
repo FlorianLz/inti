@@ -17,7 +17,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = ({buttons, onChange}) =>
     return (
         <div className="flex gap-8 mb-8 flex-col justify-center">
             {buttons.map((button, index) => (
-                <button className="w-full h-[208px] button-neutral"
+                <button className="w-full h-[208px] button-neutral hover:bg-neutral-50 hover:text-white"
                         key={index}
                         onClick={(e) => handleClick(e, button.value)}>
                     {button.text}
