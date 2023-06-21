@@ -2,28 +2,28 @@
  * FontFace for public/fonts/ABCGintoNordVariable-Trial.ttf
  */
 @font-face {
-  font-family: 'Nord';
-  src: url('/fonts/ABCGintoNordVariable-Trial.ttf') format('truetype');
-  font-weight: 100 900;
-  font-display: swap;
+    font-family: 'Nord';
+    src: url('/fonts/ABCGintoNordVariable-Trial.ttf') format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
 }
 
 
 @layer components {
-  .title-l {
-    @apply text-[32px] font-bold;
-  }
+    .title-l {
+        @apply text-[32px] font-bold;
+    }
 
-  .title-s {
-    @apply text-[20px] font-bold;
-  }
+    .title-s {
+        @apply text-[20px] font-bold;
+    }
 
-  .text-caption {
-    @apply text-[14px];
-  }
+    .title-m {
+        @apply text-[24px] font-bold;
+    }
 
-  .number-result{
-    @apply text-[64px] font-bold leading-[62px] block -mb-[0.90rem] pl-4;
-  }
+    .text-caption {
+        @apply text-[14px];
+    }
 
 }
