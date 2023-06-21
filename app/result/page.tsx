@@ -1,11 +1,11 @@
 import {Back} from "@/components/Back";
-import Image from "next/image";
 import destination1 from "@/public/images/destination1.png";
 import destination2 from "@/public/images/destination2.png";
 import destination3 from "@/public/images/destination3.png";
 import destination4 from "@/public/images/destination4.png";
 import destination5 from "@/public/images/destination5.png";
 import destination6 from "@/public/images/destination6.png";
+import ResultCard from "@/components/ResultCard";
 
 const destinations = [
     {
@@ -66,17 +66,7 @@ export default function ResultPage() {
             <p className="text-neutral-100">{destinations.length} résultats</p>
         </div>
         <div className="flex flex-col gap-7">
-            {destinations.map(destination => <div key={destination.id}>
-                <span className="number-result text-secondary-500">{destination.id}</span>
-                <Image src={destination.picture} alt="" className="rounded-2xl"/>
-                <div className="flex flex-col shadow-2xl p-4 rounded-2xl mx-4 -mt-[80px] bg-white relative">
-                    <span className="text-caption text-neutral-100">{destination.country}</span>
-                    <h2 className="title-s pb-6 text-neutral-100">{destination.name}</h2>
-                    <p className="text-neutral-100 text-caption">{destination.duration} jours - {destination.duration - 1} nuits</p>
-                    <p className="text-neutral-300 text-caption"><span
-                        className="bold title-s text-neutral-100">{destination.price}€</span>/personne</p>
-                </div>
-            </div>)}
+            {destinations.map(destination => <ResultCard key={destination.id} {...destination}/>)}
         </div>
     </div>
 }

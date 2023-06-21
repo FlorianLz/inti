@@ -19,3 +19,7 @@
         }
     }
 }
+
+.imgTop{
+    width: calc(50% - 4px);
+}
