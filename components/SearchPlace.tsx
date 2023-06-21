@@ -30,7 +30,7 @@ export default function Search({onChange}: { onChange: (suggestion: ISearchPlace
 
   return <div className="relative w-full">
       <input type="text" value={search} onChange={(e) => {setRefresh(true);setSearch(e.target.value) }} className="border border-black w-full h-12 px-4 py-3" placeholder="Rechercher une destination"/>
-      {suggestions.length > 0 && <div className="absolute top-11 left-0 bg-white border border-black w-full">
+      {suggestions.length > 0 && <div className="absolute top-11 left-0 bg-white border border-black w-full z-10">
           {suggestions.map((suggestion) => <div key={suggestion.id} className="p-2 border-b border-black hover:bg-amber-50 cursor-pointer" onClick={()=>handleSearch(suggestion)}>{suggestion.name}</div>)}
       </div>}
     </div>
