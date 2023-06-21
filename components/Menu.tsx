@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from "react";
 const MobileMenu = () => {
     return (
-        <div className="absolute p-2 bg-white rounded shadow-md flex bottom-0 drop-shadow-lg">
+        <div className="fixed p-2 bg-white rounded shadow-md flex bottom-0 drop-shadow-lg w-screen left-0 flex justify-center">
             <Link href="/" passHref>
                 <div className="flex flex-col items-center justify-center group">
                     <svg className="group-hover:fill-current group-hover:text-primary-600" width="24" height="24" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -13,7 +13,7 @@ const MobileMenu = () => {
                     </p>
                 </div>
             </Link>
-            <Link href="/" passHref>
+            <Link href="/trip" passHref>
                 <div className="flex flex-col items-center justify-center group">
                     <svg className="group-hover:fill-current group-hover:text-primary-600" width="24" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path className="group-hover:stroke-primary-600" d="M9 21L11.25 18.75V16.5L13.5 14.25L18 21L20.25 18.75L17.25 10.5L20.3438 7.59375C20.7664 7.17106 21.0039 6.59777 21.0039 6C21.0039 5.40222 20.7664 4.82894 20.3438 4.40625C19.9211 3.98356 19.3478 3.74609 18.75 3.74609C18.1522 3.74609 17.5789 3.98356 17.1562 4.40625L14.25 7.5L6 4.5L3.75 6.75L10.5 11.25L8.25 13.5H6L3.75 15.75L7.5 17.25L9 21Z" stroke="#576664" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

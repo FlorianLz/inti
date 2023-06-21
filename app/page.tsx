@@ -13,6 +13,7 @@ import top8 from "@/public/images/top8.png";
 import top9 from "@/public/images/top9.png";
 import top10 from "@/public/images/top10.png";
 import Link from "next/link";
+import Menu from "@/components/Menu";
 
 const destinations = [
     {
@@ -87,7 +88,7 @@ const topDestinations = [
 ]
 export default function HomePage() {
     return (
-        <div className="h-screen py-4">
+        <div className="py-4">
 
             <h1 className="title-m pt-2 pb-6">Bonjour</h1>
             <div className="bg-primary-950 rounded-2xl p-8 mb-10">
@@ -109,6 +110,7 @@ export default function HomePage() {
             <div className="flex flex-wrap justify-between gap-2">
                 {topDestinations.map(destination => <DestinationCard key={destination.id} {...destination} />)}
             </div>
+            <Menu />
         </div>
     )
 }
