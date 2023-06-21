@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Handicap from '@/components/Handicap';
-export default function  Buttton() {
+export default function HandicapPage() {
     return (
         <div>
             <Handicap />
