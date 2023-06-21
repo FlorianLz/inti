@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Back } from '@/components/Back';
 
-const NbPerson = () => {
+const NbPerson = (props:any) => {
     const [counts, setCounts] = useState({
         adults: 0,
         children: 0,
@@ -13,6 +13,7 @@ const NbPerson = () => {
             ...prevCounts,
             [type]: prevCounts[type] + 1,
         }));
+        props.onChange(counts);
     };
 
     const decrement = (type:any) => {
@@ -20,6 +21,7 @@ const NbPerson = () => {
             ...prevCounts,
             [type]: prevCounts[type] > 0 ? prevCounts[type] - 1 : 0,
         }));
+        props.onChange(counts);
     };
 
     return (
@@ -53,6 +55,7 @@ const NbPerson = () => {
                         <button className="text-4xl p-4 border-2 border-neutral-100 rounded-xl aspect-square flex items-center w-12 h-12 justify-center" onClick={() => increment('babies')}>+</button>
                     </div>
                 </div>
+                <button onClick={props.next} className='button-primary w-full hover:bg-primary-700'>Passer aux personnes</button>
             </div>
         </div>
     );

@@ -8,6 +8,7 @@ import {DateFormStep} from "@/components/formSteps/DateFormStep";
 import {ISearchInput} from "@/interfaces/SearchInput.interface";
 import {searchInputService} from "@/service/searchInput.service";
 import {TransportsFormStep} from "@/components/formSteps/TransportsFormStep";
+import {NbPersonFormStep} from "@/components/formSteps/NbPersonFormStep";
 
 const DEFAULT_FORM_STATE: IFormState = {
     index: 0,
@@ -17,11 +18,11 @@ const DEFAULT_FORM_STATE: IFormState = {
             fields: [],
             component: ModeFormStep,
         },
-        /*{
+        {
             name: 'nbPersons',
             fields: [],
-            component: ExampleStepComponent,
-        },*/
+            component: NbPersonFormStep,
+        },
         {
             name: 'date',
             fields: [],
