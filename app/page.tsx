@@ -88,7 +88,7 @@ const topDestinations = [
 ]
 export default function HomePage() {
     return (
-        <div className="py-4">
+        <div className="pt-4 pb-16">
 
             <h1 className="title-m pt-2 pb-6">Bonjour</h1>
             <div className="bg-primary-950 rounded-2xl p-8 mb-10">
