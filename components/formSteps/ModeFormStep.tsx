@@ -30,11 +30,11 @@ export const ModeFormStep = (props: any) => {
             <div className='h-full flex flex-col justify-between'>
                 <ButtonComponent  buttons={[
                     {
-                        text: 'Je choisis',
+                        text: 'Je choisis seul.e',
                         value: 'je-choisis'
                     },
                     {
-                        text: 'On choisis ensemble',
+                        text: 'On choisit à plusieurs',
                         value: 'on-choisis-ensemble'
                     }
                 ]} onChange={(value) => handleChange(value)}/>

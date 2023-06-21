@@ -4,6 +4,6 @@
     }
 
     .button-neutral {
-        @apply bg-neutral-100 px-7 py-6 rounded-2xl text-white text-base font-bold;
+        @apply px-7 py-6 rounded-2xl text-neutral-100 text-base font-bold border border-neutral-100;
     }
 }
