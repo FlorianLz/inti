@@ -8,7 +8,7 @@ export const DateFormStep = (props: any) => {
     const form = useContext(FormStateContext);
 
     useEffect(() => {
-        form.steps[props.stepIndex].fields = [
+        form.formState.steps[props.stepIndex].fields = [
             {
                 name: 'date',
                 value: fieldValue
@@ -19,7 +19,7 @@ export const DateFormStep = (props: any) => {
     return (
         <div className="h-full flex flex-col justify-between">
             <div>
-                <Back/>
+                <Back prev={props.prev}/>
                 <h1 className='title-l mb-6'>Quand veux-tu voyager ?</h1>
             </div>
             <div className='flex-grow flex flex-col justify-between'>
