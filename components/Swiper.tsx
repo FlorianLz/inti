@@ -28,6 +28,10 @@ export default function Swiper(props: IQuestionSwiperProps) {
         }, 200)
     }
 
+    const handleSwipe = (e: React.MouseEvent<any>, direction: string) => {
+        e.preventDefault();
+        onSwipe(direction);
+    }
 
     useEffect(() => {
         setActualQuestion(props.questions.find(question => question.id === currentQuestion) ?? null);
@@ -60,13 +64,13 @@ export default function Swiper(props: IQuestionSwiperProps) {
                         <h2 className="py-3 title-s">{actualQuestion.answer}</h2>
                         <div className="w-full flex justify-around">
                             <button className="rounded-2xl p-2 w-16 h-16 text-secondary-300 font-bold text-base shadow-md"
-                                    onClick={() => onSwipe('left')}>X
+                                    onClick={(e) => handleSwipe(e,'left')}>X
                             </button>
                             <button className="rounded-2xl p-2 w-16 h-16 text-secondary-300 font-bold text-base shadow-md"
-                                    onClick={() => onSwipe('down')}>=
+                                    onClick={(e) => handleSwipe(e,'down')}>=
                             </button>
                             <button className="rounded-2xl p-2 w-16 h-16 text-secondary-300 font-bold text-base shadow-md"
-                                    onClick={() => onSwipe('right')}>V
+                                    onClick={(e) => handleSwipe(e,'right')}>V
                             </button>
                         </div>
                     </div>

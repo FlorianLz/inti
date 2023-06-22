@@ -6,14 +6,14 @@ export const searchInputService = {
     buildFromForm: (formState: IFormState): ISearchInput => {
         return {
             nbPerson: {
-                adults: 4,
-                children: 0,
-                babies: 0,
+                adults: searchInputService.getNbPerson(formState, 'adults'),
+                children: searchInputService.getNbPerson(formState, 'children'),
+                babies: searchInputService.getNbPerson(formState, 'babies'),
             },
             transport: searchInputService.getFormTransports(formState),
             budget: {
-                min: 0,
-                max: 10000,
+                min: searchInputService.getBudget(formState, 'min'),
+                max: searchInputService.getBudget(formState, 'max'),
             },
             departure: {
                 latitude: 50.63249610631816,
@@ -74,7 +74,7 @@ export const searchInputService = {
         const dateStep = searchInputService.findFormStepByName(formState, 'date');
         const dateField = dateStep ? searchInputService.findStepFieldByName(dateStep, 'date') : null;
 
-        if (dateStep && dateField) {
+        if (dateStep && dateField && dateField.value) {
             const startDate = dateField.value[0]
             const endDate = dateField.value[1];
             const nbDays = (new Date(endDate).getTime() - new Date(startDate).getTime()) / (1000 * 3600 * 24);
@@ -121,5 +121,17 @@ export const searchInputService = {
             boat: false,
             other: false,
         }
+    },
+
+    getNbPerson(formState: IFormState, name: string): number {
+        const nbPersonStep = searchInputService.findFormStepByName(formState, 'nbPersons');
+        const nbPersonField = nbPersonStep ? searchInputService.findStepFieldByName(nbPersonStep, 'nbPersons') : null;
+        return nbPersonField.value[name] ?? 0;
+    },
+
+    getBudget(formState: IFormState, name: string): number {
+        const budgetStep = searchInputService.findFormStepByName(formState, 'budget');
+        const budgetField = budgetStep ? searchInputService.findStepFieldByName(budgetStep, 'budget') : null;
+        return name === 'min' ? budgetField.value[0] : budgetField.value[1];
     }
 }

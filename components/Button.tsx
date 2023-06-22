@@ -7,7 +7,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = ({buttons, onChange}) =>
     useEffect(() => {
         if (!value) return;
         if (onChange) onChange(value);
-    }, [onChange, value]);
+    }, [value]);
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, value: string) => {
         e.preventDefault();

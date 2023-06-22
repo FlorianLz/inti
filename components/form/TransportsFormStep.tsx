@@ -34,25 +34,21 @@ export const TransportsFormStep = (props: any) => {
             name: 'train'
         }];
 
-
-    useEffect(() => {
-        form.steps[props.stepIndex].fields = [
-            {
-                name: 'transports',
-                value: fieldValue
-            }
-        ]
-    }, [fieldValue])
-
     const handleEnd = (results: ISwiperResultItem[]) => {
         setFieldValue(results);
+        form.formState.steps[props.stepIndex].fields = [
+            {
+                name: 'transports',
+                value: results
+            }
+        ]
         props.next();
     }
 
     return (
         <div className="h-full flex flex-col justify-between">
             <div>
-                <Back/>
+                <Back prev={props.prev}/>
                 <h1 className='title-l mb-6'>Tu veux partir comment ?</h1>
             </div>
             <div className='flex-grow flex flex-col justify-between'>

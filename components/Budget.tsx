@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Back } from '@/components/Back';
+import React, {useEffect, useState} from 'react';
 import Image, { StaticImageData } from 'next/image';
 import Standard from '../public/€.svg';
 import Itermediaire from '../public/€€.svg';
@@ -14,10 +13,17 @@ const budgetTab = [
     { name: 'Luxe', image: Luxe, value: false, range: [3000, 7000], desc: 'Expérience unique' },
 ];
 
-const Budget = () => {
+const Budget = ({onChange}: {onChange: (tab:any) => void}) => {
     const [selectedBudget, setSelectedBudget] = useState(budgetTab);
     const [minBudget, setMinBudget] = useState<number | ''>('');
     const [maxBudget, setMaxBudget] = useState<number | ''>('');
+
+    useEffect(() => {
+        hasSelectedTab ? onChange(selectedTab?.range) : onChange([minBudget, maxBudget]);
+    }, [selectedBudget]);
+
+    const hasSelectedTab = selectedBudget.some(item => item.value);
+    const selectedTab = selectedBudget.find(item => item.value);
     const handleRadioChange = (index: number) => {
         const updatedBudgetTab = selectedBudget.map((item, i) => {
             if (i === index) {
@@ -26,8 +32,9 @@ const Budget = () => {
                 return { ...item, value: false };
             }
         });
+        setMinBudget('')
+        setMaxBudget('')
         setSelectedBudget(updatedBudgetTab);
-        console.log(updatedBudgetTab);
     };
 
     const handleMinBudgetChange = (event: { target: { value: string; }; }) => {
@@ -55,16 +62,7 @@ const Budget = () => {
     };
 
     return (
-        <div className="h-full flex flex-col justify-between">
-            <div>
-                <Back />
-                <h1 className="title-l mb-6">Quel est ton budget ?</h1>
-                <p className="text-neutral-100 text-base">
-                    On veut savoir quel budget tu te donnes pendant tout ton séjour.
-                    <br />
-                    On parle ici des transports et logements, donc hors-loisir.
-                </p>
-            </div>
+        <div className="h-full flex flex-col gap-4">
             <div className="flex gap-2 flex-wrap justify-between mt-6">
                 {selectedBudget.map((budgetItem, index) => (
                     <label

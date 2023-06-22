@@ -1,14 +1,20 @@
 'use client';
 
 import React, {createContext, useCallback, useEffect, useState} from "react";
-import {IFormState} from "@/interfaces/Form.interface";
-import {ModeFormStep} from "@/components/formSteps/ModeFormStep";
-import {DestinationFormStep} from "@/components/formSteps/DestinationFormStep";
-import {DateFormStep} from "@/components/formSteps/DateFormStep";
+import {IFormContext, IFormState} from "@/interfaces/Form.interface";
+import {ModeFormStep} from "@/components/form/ModeFormStep";
+import {DestinationFormStep} from "@/components/form/DestinationFormStep";
+import {DateFormStep} from "@/components/form/DateFormStep";
 import {ISearchInput} from "@/interfaces/SearchInput.interface";
+import {TransportsFormStep} from "@/components/form/TransportsFormStep";
+import {NbPersonFormStep} from "@/components/form/NbPersonFormStep";
+import {BudgetFormStep} from "@/components/form/BudgetFormStep";
 import {searchInputService} from "@/service/searchInput.service";
-import {TransportsFormStep} from "@/components/formSteps/TransportsFormStep";
-import {NbPersonFormStep} from "@/components/formSteps/NbPersonFormStep";
+import {ResumeFormStep} from "@/components/form/ResumeFormStep";
+import {searchRequestService} from "@/service/searchRequest.service";
+import {ITrip} from "@/interfaces/Trip.interface";
+import {Session} from "@supabase/auth-helpers-nextjs";
+import Link from "next/link";
 
 const DEFAULT_FORM_STATE: IFormState = {
     index: 0,
@@ -34,54 +40,43 @@ const DEFAULT_FORM_STATE: IFormState = {
             component: DestinationFormStep,
         },
         {
+            name: 'budget',
+            fields: [],
+            component: BudgetFormStep,
+        },
+        {
             name: 'transports',
             fields: [],
             component: TransportsFormStep,
         },
-        /*{
-            name: 'budget',
-            fields: [],
-            component: ExampleStepComponent,
-        },
-        {
-            name: 'recap',
-            fields: [],
-            component: ExampleStepComponent,
-        },*/
     ],
 }
 
-export const FormStateContext = createContext(DEFAULT_FORM_STATE);
+export const FormStateContext = createContext<IFormContext>({formState: DEFAULT_FORM_STATE});
 
-export const MultiStepForm = () => {
+export const MultiStepForm = ({session}: {session: Session | null}) => {
     const [formState, setFormState]: [IFormState, any] = useState(DEFAULT_FORM_STATE);
-    const [searchInput, setSearchInput] = useState<ISearchInput | null>(null);
-    const submit = (e: any = null) => {
-        if (e) e.preventDefault();
-    };
-
+    const [searchInput, setSearchInput]: [ISearchInput | null, any] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [results, setResults] = useState<ITrip[]>([]);
+    const [resultsUrl, setResultsUrl] = useState<string>('')
 
     useEffect(() => {
-        console.log('Build searchInput');
-        console.log(formState);
-        const searchInput = searchInputService.buildFromForm(formState);
-        const lastStepIndex = formState.steps.length;
-        if (formState.index !== lastStepIndex) return;
-        submit();
+        if (formState.index < formState.steps.length) return;
+        const searchInput: ISearchInput = searchInputService.buildFromForm(formState)
+        setSearchInput(searchInput)
     }, [formState])
 
-    const next = (e: React.MouseEvent<any>|null) => {
+    const next = (e: React.MouseEvent<any> | null) => {
         if (e) e.preventDefault();
         const updatedStepIndex = formState.index + 1;
         setFormState((prevState: IFormState) => ({
             index: updatedStepIndex,
             steps: prevState.steps
         }))
-
-        updateBrowserHistory();
     };
 
-    const prev = (e: React.MouseEvent<any>|null) => {
+    const prev = (e: React.MouseEvent<any> | null) => {
         if (e) e.preventDefault();
         const updatedStepIndex = formState.index - 1;
 
@@ -89,20 +84,38 @@ export const MultiStepForm = () => {
             ...prevState,
             index: updatedStepIndex
         }))
-
-        updateBrowserHistory();
     };
 
-    const updateBrowserHistory = () => {
-        const { index, steps } = formState;
-        const { name } = steps[index];
-        window.history.pushState({ index }, name, `?step=${index}`);
-    };
+    const handleSubmit = async () => {
+        console.log('submit')
+        if (!searchInput || !session) return;
+        setLoading(true);
+        const results = await searchRequestService.getSearchRequestResults(searchInput, session);
+        setResults(results.results)
+        setResultsUrl(`http://localhost:3000/search/${results.id}`)
+        setLoading(false);
+    }
 
     return (
-        <FormStateContext.Provider value={formState}>
+        <FormStateContext.Provider value={{formState}}>
             <form className='h-full'>
-                {formState.steps[formState.index].component({stepIndex: formState.index, next, prev, submit})}
+                {formState.steps.map((step, index) => {
+                    return (
+                        <div key={index} className={`h-full ${formState.index === index ? '' : 'hidden'}`}>
+                            {step.component({stepIndex: index, next, prev})}
+                        </div>
+                    )
+                })}
+                <div
+                    className={`h-full ${formState.index < formState.steps.length || results.length > 0 || loading ? 'hidden' : ''}`}>
+                    <ResumeFormStep searchInput={searchInput} prev={prev} onSubmit={handleSubmit}/>
+                </div>
+                <div className={`h-full ${loading ? '' : 'hidden'}`}>
+                    Chargement...
+                </div>
+                <div className={`h-full ${results.length > 0 ? '' : 'hidden'}`}>
+                    <Link href={resultsUrl}>Voir les {results.length} résultats</Link>
+                </div>
             </form>
         </FormStateContext.Provider>
     )

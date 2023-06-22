@@ -7,24 +7,21 @@ export const ModeFormStep = (props: any) => {
     const [fieldValue, setFieldValue] = useState('');
     const form = useContext(FormStateContext);
 
-    useEffect(() => {
-        form.steps[props.stepIndex].fields = [
-            {
-                name: 'qui-choisis',
-                value: fieldValue
-            }
-        ]
-    }, [fieldValue])
-
     const handleChange = (value: string) => {
         setFieldValue(value)
+        form.formState.steps[props.stepIndex].fields = [
+            {
+                name: 'mode',
+                value: value
+            }
+        ]
         props.next();
     }
 
     return (
         <div className="h-full flex flex-col justify-between">
             <div>
-                <Back/>
+                <Back prev={props.prev}/>
                 <h1 className='title-l mb-6'>Qui choisis ?</h1>
             </div>
             <div className='h-full flex flex-col justify-between'>
