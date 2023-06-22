@@ -9,8 +9,7 @@ export default async function Account() {
     const {data: { session }} = await supabase.auth.getSession();
 
     return (
-        <div className="pt-4 pb-16">
-            <div>Salut beau gosse</div>
+        <div className="h-screen pt-4 pb-16">
             <Login session={session}/>
             <Menu />
         </div>

@@ -96,7 +96,7 @@ export default async function HomePage() {
     const firstName = fullName?.split(' ')[0] ?? ''
 
     return (
-        <div className="pt-4 pb-16">
+        <div className="pt-4 pb-16 h-full">
 
             <h1 className="title-m pt-2 pb-6">Bonjour {firstName}</h1>
             <div className="bg-primary-950 rounded-2xl p-8 mb-10">
