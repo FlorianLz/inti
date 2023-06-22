@@ -10,20 +10,26 @@ const NbPerson = (props: any) => {
 
     const increment = (e: React.MouseEvent, type: string) => {
         e.preventDefault();
-        setCounts((prevCounts: any) => ({
+        const prevCounts = counts;
+        const prevCountUpdated : number = prevCounts[type];
+        const updatedCount = {
             ...prevCounts,
-            [type]: prevCounts[type] + 1,
-        }));
-        props.onChange(counts);
+            [type]: prevCountUpdated + 1,
+        }
+        setCounts(updatedCount);
+        props.onChange(updatedCount);
     };
 
     const decrement = (e: React.MouseEvent, type: string) => {
         e.preventDefault();
-        setCounts((prevCounts: any) => ({
+        const prevCounts = counts;
+        const prevCountUpdated : number = prevCounts[type];
+        const updatedCount = {
             ...prevCounts,
-            [type]: prevCounts[type] > 0 ? prevCounts[type] - 1 : 0,
-        }));
-        props.onChange(counts);
+            [type]: prevCountUpdated > 0 ? prevCountUpdated + 1: 0,
+        }
+        setCounts(updatedCount);
+        props.onChange(updatedCount);
     };
 
     return (

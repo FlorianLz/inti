@@ -32,44 +32,40 @@ export const DestinationFormStep = (props: any) => {
         }
         if (choice === "spain") {
             setFieldValue({
-                city: "",
                 distanceFromParis: locationHelper.calculateDistance(-3.74922, 40.46366700000001, 2.3488, 48.85341),
                 id: 1,
                 name: 'Espagne',
-                country: 'Espagne',
+                country: 'Spain',
                 coordinates: [-3.74922, 40.46366700000001],
                 fromWorldChoice: isWorld
             });
         }
         if (choice === "italy") {
             setFieldValue({
-                city: "",
                 distanceFromParis: locationHelper.calculateDistance(12.56738, 41.87194, 2.3488, 48.85341),
                 id: 2,
                 name: 'Italie',
-                country: 'Italie',
+                country: 'Italy',
                 coordinates: [12.56738, 41.87194],
                 fromWorldChoice: isWorld
             });
         }
         if (choice === "netherlands") {
             setFieldValue({
-                city: "",
                 distanceFromParis: locationHelper.calculateDistance(4.895168, 52.370216, 2.3488, 48.85341),
                 id: 3,
                 name: 'Pays-Bas',
-                country: 'Pays-Bas',
+                country: 'Netherlands',
                 coordinates: [4.895168, 52.370216],
                 fromWorldChoice: isWorld
             });
         }
         if (choice === "germany") {
             setFieldValue({
-                city: "",
                 distanceFromParis: locationHelper.calculateDistance(13.404954, 52.520008, 2.3488, 48.85341),
                 id: 4,
                 name: 'Allemagne',
-                country: 'Allemagne',
+                country: 'Germany',
                 coordinates: [13.404954, 52.520008],
                 fromWorldChoice: isWorld
             });

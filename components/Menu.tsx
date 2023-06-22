@@ -47,12 +47,12 @@ const MobileMenu = () => {
                     </p>
                 </div>
             </Link>
-            <Link href="/profil" passHref>
+            <Link href="/account" passHref>
                 <div className="flex flex-col items-center justify-center group">
-                    <svg className={`group-hover:fill-current group-hover:text-primary-600 ${isActiveSvg('/profil')}`} width="24" height="24" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path className={`group-hover:fill-current group-hover:text-primary-600 ${isActiveSvg('/profil')}`} fillRule="evenodd" clipRule="evenodd" d="M5.24507 6.66997C5.24507 4.17927 7.26418 2.16016 9.75488 2.16016C12.2456 2.16016 14.2647 4.17927 14.2647 6.66997C14.2647 9.16068 12.2456 11.1798 9.75488 11.1798C7.26418 11.1798 5.24507 9.16068 5.24507 6.66997ZM13.616 11.9117C15.2226 10.7262 16.2647 8.8198 16.2647 6.66997C16.2647 3.0747 13.3502 0.160156 9.75488 0.160156C6.15961 0.160156 3.24507 3.0747 3.24507 6.66997C3.24507 8.8198 4.28718 10.7262 5.8938 11.9117C3.66167 12.798 1.82108 14.4326 0.624647 16.5C0.348011 16.978 0.511255 17.5898 0.989263 17.8664C1.46727 18.143 2.07903 17.9798 2.35567 17.5018C3.85725 14.9071 6.5681 13.1798 9.75488 13.1798C12.9417 13.1798 15.6525 14.9071 17.1541 17.5018C17.4307 17.9798 18.0425 18.143 18.5205 17.8664C18.9985 17.5898 19.1618 16.978 18.8851 16.5C17.6887 14.4326 15.8481 12.798 13.616 11.9117Z" fill="#576664"/>
+                    <svg className={`group-hover:fill-current group-hover:text-primary-600 ${isActiveSvg('/account')}`} width="24" height="24" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path className={`group-hover:fill-current group-hover:text-primary-600 ${isActiveSvg('/account')}`} fillRule="evenodd" clipRule="evenodd" d="M5.24507 6.66997C5.24507 4.17927 7.26418 2.16016 9.75488 2.16016C12.2456 2.16016 14.2647 4.17927 14.2647 6.66997C14.2647 9.16068 12.2456 11.1798 9.75488 11.1798C7.26418 11.1798 5.24507 9.16068 5.24507 6.66997ZM13.616 11.9117C15.2226 10.7262 16.2647 8.8198 16.2647 6.66997C16.2647 3.0747 13.3502 0.160156 9.75488 0.160156C6.15961 0.160156 3.24507 3.0747 3.24507 6.66997C3.24507 8.8198 4.28718 10.7262 5.8938 11.9117C3.66167 12.798 1.82108 14.4326 0.624647 16.5C0.348011 16.978 0.511255 17.5898 0.989263 17.8664C1.46727 18.143 2.07903 17.9798 2.35567 17.5018C3.85725 14.9071 6.5681 13.1798 9.75488 13.1798C12.9417 13.1798 15.6525 14.9071 17.1541 17.5018C17.4307 17.9798 18.0425 18.143 18.5205 17.8664C18.9985 17.5898 19.1618 16.978 18.8851 16.5C17.6887 14.4326 15.8481 12.798 13.616 11.9117Z" fill="#576664"/>
                     </svg>
-                    <p className={`block px-4 py-2 text-xs text-neutral-300 group-hover:text-primary-50 ${isActiveText('/profil')}`}>
+                    <p className={`block px-4 py-2 text-xs text-neutral-300 group-hover:text-primary-50 ${isActiveText('/account')}`}>
                         Profil
                     </p>
                 </div>

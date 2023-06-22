@@ -14,9 +14,18 @@ import {ResumeFormStep} from "@/components/form/ResumeFormStep";
 import {searchRequestService} from "@/service/searchRequest.service";
 import {ITrip} from "@/interfaces/Trip.interface";
 import {Session} from "@supabase/auth-helpers-nextjs";
-import Link from "next/link";
 import { useRouter } from 'next/navigation';
+import Lottie from "react-lottie";
+import animationData from "../public/animations/walk.json";
 
+const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice",
+    },
+};
 
 const DEFAULT_FORM_STATE: IFormState = {
     index: 0,
@@ -61,7 +70,6 @@ export const MultiStepForm = ({session}: {session: Session | null}) => {
     const [searchInput, setSearchInput]: [ISearchInput | null, any] = useState(null);
     const [loading, setLoading] = useState(false);
     const [results, setResults] = useState<ITrip[]>([]);
-    const [resultsUrl, setResultsUrl] = useState<string>('')
     const router = useRouter()
 
     useEffect(() => {
@@ -81,7 +89,7 @@ export const MultiStepForm = ({session}: {session: Session | null}) => {
 
     const prev = (e: React.MouseEvent<any> | null) => {
         if (e) e.preventDefault();
-        const updatedStepIndex = formState.index - 1;
+        const updatedStepIndex = formState.index > 0 ? formState.index - 1 : 0;
 
         setFormState((prevState: IFormState) => ({
             ...prevState,
@@ -90,13 +98,10 @@ export const MultiStepForm = ({session}: {session: Session | null}) => {
     };
 
     const handleSubmit = async () => {
-        console.log('submit')
         if (!searchInput || !session) return;
         setLoading(true);
         const results = await searchRequestService.getSearchRequestResults(searchInput, session);
         setResults(results.results)
-        setResultsUrl(`http://localhost:3000/search/${results.uuid}`)
-        setLoading(false);
         await router.push(`/search/${results.uuid}`)
     }
 
@@ -114,11 +119,13 @@ export const MultiStepForm = ({session}: {session: Session | null}) => {
                     className={`h-full ${formState.index < formState.steps.length || results.length > 0 || loading ? 'hidden' : ''}`}>
                     <ResumeFormStep searchInput={searchInput} prev={prev} onSubmit={handleSubmit}/>
                 </div>
-                <div className={`h-full ${loading ? '' : 'hidden'}`}>
-                    Chargement...
-                </div>
-                <div className={`h-full ${results.length > 0 ? '' : 'hidden'}`}>
-                    <Link href={resultsUrl}>Voir les {results.length} résultats</Link>
+                <div className={`h-full flex items-end relative ${loading ? '' : 'hidden'}`}>
+                    <p className="text-xl w-full font-bold text-center absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                        Recherche de votre futur voyage
+                    </p>
+                   <div className="-mb-4">
+                       <Lottie options={defaultOptions} height={400} width={400} />
+                   </div>
                 </div>
             </form>
         </FormStateContext.Provider>

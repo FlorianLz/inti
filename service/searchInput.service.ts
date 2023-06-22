@@ -59,8 +59,13 @@ export const searchInputService = {
         const destinationField = destinationStep ? searchInputService.findStepFieldByName(destinationStep, 'destination') : null;
 
         if (destinationStep && destinationField) {
+            if (destinationField.value.city){
+                return {
+                    city: destinationField.value.city,
+                    country: destinationField.value.country,
+                }
+            }
             return {
-                city: destinationField.value.city,
                 country: destinationField.value.country,
             }
         }

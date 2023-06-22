@@ -2,12 +2,15 @@
 
 import { Session, createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import process from "process";
+import { useRouter } from 'next/navigation';
+
 
 export default function Login({ session }: { session: Session | null }) {
     const supabase = createClientComponentClient<any>({
         supabaseUrl: `${process.env.NEXT_PUBLIC_SUPABASE_URL}`,
         supabaseKey: `${process.env.NEXT_PUBLIC_SUPABASE_KEY}`,
     });
+    const router = useRouter()
 
 
     const handleGoogleLogin = async () => {
@@ -28,6 +31,7 @@ export default function Login({ session }: { session: Session | null }) {
         if (error) {
             console.log({ error });
         }
+        await router.push(`/`)
     };
 
     // this `session` is from the root loader - server-side
