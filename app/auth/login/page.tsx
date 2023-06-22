@@ -8,6 +8,8 @@ export default async function Page() {
     const {data: {session}} = await supabase.auth.getSession();
 
     return (
-        <Login session={session}/>
+        <div className="h-screen pt-4 pb-16">
+            <Login session={session}/>
+        </div>
     )
 }

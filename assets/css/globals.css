@@ -7,6 +7,14 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    accent-color: theme('colors.primary.600');
+}
+
+*:focus-visible {
+    outline-color: theme('colors.primary.600');;
+}
+
 @layer utilities {
     @variants responsive {
         .no-scrollbar::-webkit-scrollbar {
