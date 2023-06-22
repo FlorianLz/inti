@@ -22,7 +22,7 @@ const MobileMenu = () => {
             </Link>
             <Link href="/search" passHref>
                 <div className="flex flex-col items-center justify-center group">
-                    <svg className={`group-hover:fill-current group-hover:text-primary-600 ${isActiveSvg('/search')}`} width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className={`group-hover:fill-current group-hover:text-primary-600 ${isActiveSvg('/search')}`} width="24" height="24" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path className={`group-hover:stroke-primary-600 ${isActiveSvg('/search')}`} d="M7 19L9.25 16.75V14.5L11.5 12.25L16 19L18.25 16.75L15.25 8.5L18.3438 5.59375C18.7664 5.17106 19.0039 4.59777 19.0039 4C19.0039 3.40222 18.7664 2.82894 18.3438 2.40625C17.9211 1.98356 17.3478 1.74609 16.75 1.74609C16.1522 1.74609 15.5789 1.98356 15.1562 2.40625L12.25 5.5L4 2.5L1.75 4.75L8.5 9.25L6.25 11.5H4L1.75 13.75L5.5 15.25L7 19Z" stroke="#576664"/>
                     </svg>
                     <p className={`block px-4 py-2 text-xs text-neutral-300 group-hover:text-primary-50 ${isActiveText('/search')}`}>
