@@ -1,6 +1,6 @@
 @layer components {
     .button-primary {
-        @apply bg-primary-600 px-7 py-6 rounded-2xl text-primary-100 text-base font-bold;
+        @apply transition-all bg-primary-600 px-7 py-6 rounded-2xl text-primary-100 text-base font-bold hover:bg-primary-700;
     }
 
     .button-neutral {
