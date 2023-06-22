@@ -1,8 +1,10 @@
 import Image from "next/image";
 
-export default function ResultCard(destination:any) {
+export default function ResultCard(destination: any) {
     return (<div key={destination.id} className="mb-10">
-        <Image src={destination.picture} alt="" className="rounded-2xl"/>
+        <div className="w-full h-64">
+            <Image src={destination.picture} alt="" className="rounded-2xl w-full h-full object-cover" width={1000} height={1000}/>
+        </div>
         <div className="flex flex-col shadow-2xl p-4 rounded-2xl mx-4 -mt-[80px] bg-white relative">
             <span className="text-caption text-neutral-100">{destination.country}</span>
             <h2 className="title-s pb-6 text-neutral-100">{destination.name}</h2>

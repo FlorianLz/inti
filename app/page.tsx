@@ -97,7 +97,7 @@ export default function HomePage() {
                     <p className="text-base">Créez un voyage pour organiser vos voyages entre amis, en famille ou en
                         solo.</p>
                 </div>
-                <Link href="/trip" className='button-primary hover:bg-primary-700 block text-center'>Créez un
+                <Link href="/search" className='button-primary hover:bg-primary-700 block text-center'>Créez un
                     voyage</Link>
             </div>
 

@@ -15,6 +15,8 @@ import {searchRequestService} from "@/service/searchRequest.service";
 import {ITrip} from "@/interfaces/Trip.interface";
 import {Session} from "@supabase/auth-helpers-nextjs";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
+
 
 const DEFAULT_FORM_STATE: IFormState = {
     index: 0,
@@ -60,6 +62,7 @@ export const MultiStepForm = ({session}: {session: Session | null}) => {
     const [loading, setLoading] = useState(false);
     const [results, setResults] = useState<ITrip[]>([]);
     const [resultsUrl, setResultsUrl] = useState<string>('')
+    const router = useRouter()
 
     useEffect(() => {
         if (formState.index < formState.steps.length) return;
@@ -92,8 +95,9 @@ export const MultiStepForm = ({session}: {session: Session | null}) => {
         setLoading(true);
         const results = await searchRequestService.getSearchRequestResults(searchInput, session);
         setResults(results.results)
-        setResultsUrl(`http://localhost:3000/search/${results.id}`)
+        setResultsUrl(`http://localhost:3000/search/${results.uuid}`)
         setLoading(false);
+        await router.push(`/search/${results.uuid}`)
     }
 
     return (

@@ -8,9 +8,9 @@ export const searchRequestService = {
     async getSearchRequestResults(searchInput: ISearchInput, session: Session) {
         const results = await searchRequestRepository.getResultsForRequest(searchInput);
         const user = session.user.id;
-        const {id} = await searchRequestService.saveSearchRequestInDB(searchInput, results, user);
+        const {uuid} = await searchRequestService.saveSearchRequestInDB(searchInput, results, user);
         return {
-            id: id,
+            uuid: uuid,
             results: results
         };
     },
@@ -24,7 +24,7 @@ export const searchRequestService = {
             .insert([
                 {user: user, content: searchInput, result: results},
             ])
-            .select('id')
+            .select('uuid')
         if (error) {
             throw new Error(error.message)
         }
